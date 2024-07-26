@@ -22,9 +22,9 @@ buildGoModule rec {
   version = "5.21.2";
 
   src = fetchFromGitHub {
-    owner = "canonical";
+    owner = "Ardelean-Calin";
     repo = "lxd";
-    rev = "refs/tags/lxd-${version}";
+    rev = "feat/xattrs";
     hash = "sha256-3C5pLvO7oABWFhFiWtBr5ohFFWm20Gg36WBfVVJgKdc=";
   };
 
