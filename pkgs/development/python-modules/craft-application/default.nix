@@ -11,7 +11,7 @@
   git,
   hypothesis,
   nix-update-script,
-  pydantic-yaml,
+  pydantic-yaml-0,
   pyfakefs,
   pygit2,
   pytest-check,
@@ -24,7 +24,6 @@
   setuptools,
   snap-helpers,
 }:
-
 buildPythonPackage rec {
   pname = "craft-application";
   version = "3.2.0";
@@ -44,9 +43,9 @@ buildPythonPackage rec {
       --replace-fail "setuptools==70.1.0" "setuptools"
   '';
 
-  build-system = [ setuptools-scm ];
+  build-system = [setuptools-scm];
 
-  pythonRelaxDeps = [ "requests" ];
+  pythonRelaxDeps = ["requests"];
 
   dependencies = [
     craft-archives
@@ -54,7 +53,7 @@ buildPythonPackage rec {
     craft-grammar
     craft-parts
     craft-providers
-    pydantic-yaml
+    pydantic-yaml-0
     pygit2
     pyyaml
     snap-helpers
@@ -84,9 +83,9 @@ buildPythonPackage rec {
       --replace-fail "os_utils.OsRelease()" "os_utils.OsRelease(os_release_file='$HOME/os-release')"
   '';
 
-  pythonImportsCheck = [ "craft_application" ];
+  pythonImportsCheck = ["craft_application"];
 
-  pytestFlagsArray = [ "tests/unit" ];
+  pytestFlagsArray = ["tests/unit"];
 
   disabledTests =
     [
@@ -101,14 +100,14 @@ buildPythonPackage rec {
       "test_process_grammar_default"
     ];
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script {};
 
   meta = {
     description = "Basis for Canonical craft applications";
     homepage = "https://github.com/canonical/craft-application";
     changelog = "https://github.com/canonical/craft-application/blob/${src.rev}/docs/reference/changelog.rst";
     license = lib.licenses.lgpl3Only;
-    maintainers = with lib.maintainers; [ jnsgruk ];
+    maintainers = with lib.maintainers; [jnsgruk];
     platforms = lib.platforms.linux;
   };
 }
