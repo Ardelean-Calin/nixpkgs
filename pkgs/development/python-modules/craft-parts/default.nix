@@ -105,7 +105,7 @@ buildPythonPackage rec {
   passthru.updateScript = nix-update-script {};
 
   meta = {
-    broken = lib.versionAtLeast pydantic-yaml.version "1";
+    # broken = lib.versionAtLeast pydantic-yaml.version "1";
     description = "Software artifact parts builder from Canonical";
     homepage = "https://github.com/canonical/craft-parts";
     changelog = "https://github.com/canonical/craft-parts/releases/tag/${version}";
