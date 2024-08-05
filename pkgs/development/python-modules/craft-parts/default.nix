@@ -5,7 +5,7 @@
   nix-update-script,
   overrides,
   pydantic_1,
-  pydantic-yaml,
+  pydantic-yaml-0,
   pyxdg,
   pyyaml,
   requests,
@@ -23,7 +23,6 @@
   setuptools-scm,
   stdenv,
 }:
-
 buildPythonPackage rec {
   pname = "craft-parts";
   version = "1.33.0";
@@ -37,9 +36,9 @@ buildPythonPackage rec {
     hash = "sha256-SP2mkaXsU0btnA3aanSA18GkdW6ReLgImOWdpnwZiyU=";
   };
 
-  patches = [ ./bash-path.patch ];
+  patches = [./bash-path.patch];
 
-  build-system = [ setuptools-scm ];
+  build-system = [setuptools-scm];
 
   pythonRelaxDeps = [
     "requests"
@@ -49,7 +48,7 @@ buildPythonPackage rec {
   dependencies = [
     overrides
     pydantic_1
-    pydantic-yaml
+    pydantic-yaml-0
     pyxdg
     pyyaml
     requests
@@ -57,7 +56,7 @@ buildPythonPackage rec {
     urllib3
   ];
 
-  pythonImportsCheck = [ "craft_parts" ];
+  pythonImportsCheck = ["craft_parts"];
 
   nativeCheckInputs = [
     git
@@ -70,7 +69,7 @@ buildPythonPackage rec {
     squashfsTools
   ];
 
-  pytestFlagsArray = [ "tests/unit" ];
+  pytestFlagsArray = ["tests/unit"];
 
   preCheck = ''
     export HOME=$(mktemp -d)
@@ -103,7 +102,7 @@ buildPythonPackage rec {
       "tests/unit/features/overlay/test_executor_environment.py"
     ];
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script {};
 
   meta = {
     broken = lib.versionAtLeast pydantic-yaml.version "1";
@@ -111,7 +110,7 @@ buildPythonPackage rec {
     homepage = "https://github.com/canonical/craft-parts";
     changelog = "https://github.com/canonical/craft-parts/releases/tag/${version}";
     license = lib.licenses.lgpl3Only;
-    maintainers = with lib.maintainers; [ jnsgruk ];
+    maintainers = with lib.maintainers; [jnsgruk];
     platforms = lib.platforms.linux;
   };
 }
